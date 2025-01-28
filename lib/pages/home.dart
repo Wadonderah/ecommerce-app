@@ -9,12 +9,19 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  List<String> categories = [
+    "images/headphone_icon.png",
+    "images/laptop.png",
+    "images/TV.png",
+    "images/watch.png"
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xfff2f2f2),
+      backgroundColor: const Color(0xfff2f2f2),
       body: Container(
-        margin: EdgeInsets.only(top: 50.0, left: 20.0, right: 20.0),
+        margin: const EdgeInsets.only(top: 50.0, left: 20.0, right: 20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -43,28 +50,80 @@ class _HomeState extends State<Home> {
                 ),
               ],
             ),
-            SizedBox(
-              height: 30.0,
-            ),
-            // ignore: sized_box_for_whitespace
+            const SizedBox(height: 30.0),
             Container(
-                padding: EdgeInsets.only(left: 20.0),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10)),
-                width: MediaQuery.of(context).size.width,
-                child: TextField(
-                  decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: "Search Products",
-                      hintStyle: AppWidget.lightTextFieldStyle(),
-                      suffixIcon: Icon(
-                        Icons.search,
-                        color: Colors.black,
-                      )),
-                ))
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              width: MediaQuery.of(context).size.width,
+              child: TextField(
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintText: "Search Products",
+                  hintStyle: AppWidget.lightTextFieldStyle(),
+                  prefixIcon: const Icon(
+                    Icons.search,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 20.0),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("Categories", style: AppWidget.semiTextFieldStyle()),
+                Text(
+                  "See All",
+                  style: TextStyle(
+                    color: const Color(0xFFfd6f3e),
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+            Container(
+              margin: const EdgeInsets.only(left: 20.0),
+              height: 120,
+              child: ListView.builder(
+                itemCount: categories.length,
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  return CategoryTile(image: categories[index]);
+                },
+              ),
+            )
           ],
         ),
+      ),
+    );
+  }
+}
+
+class CategoryTile extends StatelessWidget {
+  final String image;
+
+  const CategoryTile({super.key, required this.image});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(20.0),
+      margin: EdgeInsets.only(right: 20.0),
+      decoration: BoxDecoration(color: Colors.white),
+      child: Column(
+        children: [
+          Image.asset(
+            image,
+            height: 50,
+            width: 50,
+            fit: BoxFit.cover,
+          ),
+          Icon(Icons.arrow_forward)
+        ],
       ),
     );
   }
