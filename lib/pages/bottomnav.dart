@@ -34,7 +34,7 @@ class _BottomnavState extends State<Bottomnav> {
       body: pages[currentTabIndex],
       bottomNavigationBar: CurvedNavigationBar(
         height: 65,
-        backgroundColor: Colors.white,
+        backgroundColor: Color(0xfff2f2f2),
         color: Colors.black,
         animationDuration: const Duration(milliseconds: 500), // Added const
         index: currentTabIndex, // Add this to sync button highlights
