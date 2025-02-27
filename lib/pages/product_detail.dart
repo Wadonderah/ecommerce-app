@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/widget/support_widget.dart';
 import 'package:flutter/material.dart';
 
 class ProductDetail extends StatefulWidget {
@@ -44,6 +45,7 @@ class _ProductDetailState extends State<ProductDetail> {
             ),
             Expanded(
               child: Container(
+                padding: EdgeInsets.only(top: 20.0, left: 20.0, right: 20.0),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
@@ -52,7 +54,27 @@ class _ProductDetailState extends State<ProductDetail> {
                   ),
                 ),
                 width: MediaQuery.of(context).size.width,
-                child: Text(""),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Headphone",
+                          style: AppWidget.boldTextFieldStyle(),
+                        ),
+                        Text(
+                          "ksh 1500",
+                          style: TextStyle(
+                            color: const Color(0xFFfd6f3e),
+                            fontSize: 23.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             )
           ],
